@@ -3,3 +3,32 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+body {
+  display: flex;
+  border: 1px solid black;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 150px;
+}
+
+div {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  cursor: pointer;
+  display: flex;
+}
