@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const changeBackgroundColor = () => {
     const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
       Math.random() * 256
-    )}, 0)`;
+    )}, ${Math.floor(Math.random() * 256)})`;
     document.documentElement.style.setProperty(
       "--button-52-bg-color",
       randomColor
