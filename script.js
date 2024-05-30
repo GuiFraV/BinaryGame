@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
       answer.innerHTML = "Correct!";
       startCounter();
     } else {
-      answer.innerHTML = "Incorrect. The correct answer is " + hexQuestion;
+      answer.innerHTML = "Incorrect. La réponse est " + hexQuestion;
     }
   });
 
