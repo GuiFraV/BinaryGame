@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     input.value = "";
 
     const binaryQuestion = question[0].innerHTML;
-    const hexQuestion = parseInt(binaryQuestion, 2).toString(16).toUpperCase(); // Convertir la question binaire en hexadécimal
+    const hexQuestion = parseInt(binaryQuestion, 2).toString(16).toUpperCase();
 
     if (inputUser === hexQuestion) {
       answer.innerHTML = "Correct!";
