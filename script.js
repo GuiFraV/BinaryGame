@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const input = document.querySelector("input");
   const answer = document.querySelector("p");
   const counter = document.querySelector("span");
-  const button52 = document.querySelector(".button52");
 
   let time = 3;
   let interval;
