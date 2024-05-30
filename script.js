@@ -4,9 +4,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const input = document.querySelector("input");
   const answer = document.querySelector("p");
   const counter = document.querySelector("span");
+  const button52 = document.querySelector(".button52");
 
   let time = 3;
   let interval;
+
+  const changeBackgroundColor = () => {
+    const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
+      Math.random() * 256
+    )}, 0)`;
+    document.documentElement.style.setProperty(
+      "--button-52-bg-color",
+      randomColor
+    );
+  };
 
   const startCounter = () => {
     counter.style.display = "inline";
@@ -37,6 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .toString()
       .replaceAll(",", "");
     question[0].innerHTML = binaryQuestion;
+    answer.innerHTML = "Combien fait en hexadécimal : ";
+    changeBackgroundColor();
   };
 
   form.addEventListener("submit", (e) => {
