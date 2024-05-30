@@ -39,6 +39,15 @@ form {
   gap: 5px;
 }
 
+div {
+  position: relative;
+}
+
+span {
+  position: absolute;
+  left: 15px;
+}
+
 .button-52 {
   font-size: 16px;
   font-weight: 200;
