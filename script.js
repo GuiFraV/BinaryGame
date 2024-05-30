@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (inputUser === hexQuestion) {
       answer.innerHTML = "Correct!";
       startCounter();
+      confetti();
     } else {
       answer.innerHTML = "Incorrect. La réponse est " + hexQuestion;
     }
