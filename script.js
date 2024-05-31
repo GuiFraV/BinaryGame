@@ -1,74 +1,80 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const question = document.querySelectorAll("h1");
-  const form = document.querySelector("form");
-  const input = document.querySelector("input");
-  const answer = document.querySelector("p");
-  const counter = document.querySelector("span");
+  class QuizApp {
+    constructor() {
+      this.question = document.querySelectorAll("h1");
+      this.form = document.querySelector("form");
+      this.input = document.querySelector("input");
+      this.answer = document.querySelector("p");
+      this.counter = document.querySelector("span");
 
-  let time = 3;
-  let interval;
+      this.time = 3;
+      this.interval = null;
 
-  const changeBackgroundColor = () => {
-    const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
-      Math.random() * 256
-    )}, ${Math.floor(Math.random() * 256)})`;
-    document.documentElement.style.setProperty(
-      "--button-52-bg-color",
-      randomColor
-    );
-  };
-
-  const startCounter = () => {
-    counter.style.display = "inline";
-    counter.innerHTML = time;
-    interval = setInterval(() => {
-      time--;
-      counter.innerHTML = time;
-      if (time === 0) {
-        clearInterval(interval);
-        counter.style.display = "none";
-        time = 3;
-        setNewQuestion();
-      }
-    }, 1000);
-  };
-
-  const generateBinary = () => {
-    const binary = Math.floor(Math.random() * 2);
-    const binary1 = Math.floor(Math.random() * 2);
-    const binary2 = Math.floor(Math.random() * 2);
-    const binary3 = Math.floor(Math.random() * 2);
-    return [binary, binary1, binary2, binary3];
-  };
-
-  const setNewQuestion = () => {
-    const binaryQuestion = generateBinary()
-      .join(",")
-      .toString()
-      .replaceAll(",", "");
-    question[0].innerHTML = binaryQuestion;
-    answer.innerHTML = "Combien fait en hexadécimal : ";
-    changeBackgroundColor();
-  };
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const inputUser = input.value.toUpperCase();
-    input.value = "";
-
-    const binaryQuestion = question[0].innerHTML;
-    const hexQuestion = parseInt(binaryQuestion, 2).toString(16).toUpperCase();
-
-    if (inputUser === hexQuestion) {
-      answer.innerHTML = "Correct!";
-      startCounter();
-      confetti();
-    } else {
-      answer.innerHTML = "Incorrect. La réponse est " + hexQuestion;
+      this.init();
     }
-  });
 
-  setNewQuestion();
-  counter.style.display = "none";
+    init() {
+      this.form.addEventListener("submit", (e) => this.handleSubmit(e));
+      this.setNewQuestion();
+      this.counter.style.display = "none";
+    }
+
+    changeBackgroundColor() {
+      const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
+        Math.random() * 256
+      )}, ${Math.floor(Math.random() * 256)})`;
+      document.documentElement.style.setProperty(
+        "--button-52-bg-color",
+        randomColor
+      );
+    }
+
+    startCounter() {
+      this.counter.style.display = "inline";
+      this.counter.innerHTML = this.time;
+      this.interval = setInterval(() => {
+        this.time--;
+        this.counter.innerHTML = this.time;
+        if (this.time === 0) {
+          clearInterval(this.interval);
+          this.counter.style.display = "none";
+          this.time = 3;
+          this.setNewQuestion();
+        }
+      }, 1000);
+    }
+
+    generateBinary() {
+      return Array.from({ length: 4 }, () => Math.floor(Math.random() * 2));
+    }
+
+    setNewQuestion() {
+      const binaryQuestion = this.generateBinary().join("");
+      this.question[0].innerHTML = binaryQuestion;
+      this.answer.innerHTML = "Combien fait en hexadécimal : ";
+      this.changeBackgroundColor();
+    }
+
+    handleSubmit(e) {
+      e.preventDefault();
+
+      const inputUser = this.input.value.toUpperCase();
+      this.input.value = "";
+
+      const binaryQuestion = this.question[0].innerHTML;
+      const hexQuestion = parseInt(binaryQuestion, 2)
+        .toString(16)
+        .toUpperCase();
+
+      if (inputUser === hexQuestion) {
+        this.answer.innerHTML = "Correct!";
+        this.startCounter();
+        confetti(); // Assuming confetti is a global function
+      } else {
+        this.answer.innerHTML = "Incorrect. La réponse est " + hexQuestion;
+      }
+    }
+  }
+
+  new QuizApp();
 });
